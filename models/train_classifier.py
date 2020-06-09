@@ -2,6 +2,7 @@
 import numpy as np
 import nltk
 nltk.download(['punkt', 'wordnet'])
+nltk.download('stopwords')
 import re
 import sys
 from nltk.tokenize import word_tokenize
@@ -47,7 +48,9 @@ def tokenize(text):
         list of tokens that have been tokenized, lemmatized, lower cased and
         cleaned
     """
-    tokens = word_tokenize(text)
+    text = re.sub(r"[^a-zA-Z0-9]", ' ', text.lower())
+    words = word_tokenize(text)
+    words = [w for w in words if w not in stopwords.words('english')]
     lemmatizer = WordNetLemmatizer()
 
     cleaned_tokens = []
@@ -71,8 +74,8 @@ def build_model():
         ('tfidf', TfidfTransformer()),
         ('clf', MultiOutputClassifier(RandomForestClassifier()))])
     parameters = {
-            'tfidf__use_idf': (True, False), 'tfidf__smooth_idf': (True, False),
-            'tfidf__sublinear_tf': (True, False)}
+            'tfidf__use_idf': [True, False], 'tfidf__smooth_idf': [True, False],
+            'tfidf__sublinear_tf': [True, False]}
 
     cv = GridSearchCV(pipeline, param_grid=parameters, verbose=10)
     return cv

@@ -1,12 +1,15 @@
 # Disaster_Response_Pipeline
 
 ## Description
-This project was completed as a requirement for the Data Science Nanodegree Program from Udacity, in collaboration with Figure Eight. The goal of the project was to create a machine learning model that can classify text messages and tweets from a real-life disaster. The machine learning model was implemented into a webapp which could predict the category of any text entered into the text box. 
+This project was completed as a requirement for the Data Science Nanodegree Program from Udacity, in collaboration with Figure Eight. The goal of the project was to create a machine learning model that can classify text messages and tweets from a real-life disaster. The machine learning model was implemented into a webapp which could predict the category of any text entered into the text box. This was my first time using pipeline to create a machine learning model, and it has been an excellent learning opportunity.
 
 The Project contains 3 components:
 1. An ETL Pipeline to read in csv files, clean and merge the data, and store them in a sql database.
+  - The data come from 2 different csv files, one of which contains the actual text messages, and the other contains the categories that they were assigned. The two files had to be merged into a dataframe, and organized by splitting the categories into separate columns for each category, coded as 1 or 0 to indicate whether or not the message fell into that category. Duplicates were also dropped. The final dataframe was then saved as a table in the sql database.
 2. A machine learning pipeline that trains a model to classify text messages by the category of disaster-aid needed.
-3. A webapp to show some data visualizations and classify text entered into the text box.
+  - The training data is read from the sql database and then the text is tokenized and lemmatized to make it suitable for the machine learning pipeline. TFIDF is used to vectorize the message data, and pipeline and GridSearch are used to build the model and select the best parameters. The model is then evaluated using a holdout set.  
+3. A web app to show some data visualizations and classify text entered into the text box.
+  - The web app allows the user to input text and the text will be classified into the most likely category(ies) based on the machine learning algorithm.
 
 ## Getting Started
 ### Required Packages
