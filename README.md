@@ -23,7 +23,7 @@ The Project contains 3 components:
 2. Run the following commands in the root directory to create the database and setup the model:
   - ETL Pipeline
   ```
-  python data/process_data.py data/disaster_messages.csv data/disaster_categories.csv data/DisasterResponse.db
+  python data/process_data.py data/messages.csv data/categories.csv data/DisasterResponse.db
   ```
   - ML Pipeline
   ```
@@ -39,7 +39,7 @@ The Project contains 3 components:
 There are 2 jupyter notebooks available to help understand the setup of both the ETL pipeline (ETL Pipeline Preparation.ipynb), and the ML Pipeline (ML Pipeline Preparation.ipynb). The notebook showcases the grid search parameter selection process, and contains code to create two different classifiers. One based on a RandomForest classifier with GridSearch, and the other based on an AdaBoost Classifier. Both models perform fairly similarly and the RandomForest classifier was included in the train_classifier.py file and is implemented in the web app. 
 
 ## Some notes about model performance
-The model implemented here has a very high accuracy score (0.946). However, when you use the web app, you will notice that the vast majority of things written in the text box are categorized as "related". This is the result of the training data being very unbalanced. The web app displays the number of messages in each category in the training set, and the vast majority are in the "related" category. There are methods to account for an unbalanced training set such as oversampling minority categories and undersampling majority categories, and in the future I would like to implement such methods to improve this model. You can view the precision and recall for each category in the ML Pipeline notebook and see that precision and recall vary widely based on category.
+The model implemented here has a very high accuracy score (0.946). However, when you use the web app, you will notice that the majority of things written in the text box are categorized as "related". This is the result of the training data being very unbalanced. The web app displays the number of messages in each category in the training set, and the vast majority are in the "related" category. There are methods to account for an unbalanced training set such as oversampling minority categories and undersampling majority categories, and in the future I would like to implement such methods to improve this model. You can view the precision and recall for each category in the ML Pipeline notebook and see that precision and recall vary widely based on category.
 
 ## Acknowledgements
 - [Udacity](www.udacity.com)

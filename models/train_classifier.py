@@ -1,12 +1,12 @@
 #imports
 import numpy as np
 import nltk
-nltk.download(['punkt', 'wordnet'])
-nltk.download('stopwords')
+nltk.download(['punkt', 'wordnet', 'stopwords'])
 import re
 import sys
 from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
+from nltk.corpus import stopwords
 import pandas as pd
 from sqlalchemy import create_engine
 from sklearn.multioutput import MultiOutputClassifier
@@ -54,7 +54,7 @@ def tokenize(text):
     lemmatizer = WordNetLemmatizer()
 
     cleaned_tokens = []
-    for i in tokens:
+    for i in words:
         clean_token = lemmatizer.lemmatize(i).lower().strip()
         cleaned_tokens.append(clean_token)
 
